@@ -12,6 +12,4 @@ def canUnlockAll(boxes):
                 to_check.add(key)
         checked.add(current_box)
 
-    if len(checked) == len(boxes):
-        return True
-    return False
+    return True if len(checked) == len(boxes) else False
