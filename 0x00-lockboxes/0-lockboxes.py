@@ -5,7 +5,7 @@ def canUnlockAll(boxes):
     to_check = set([0])
     checked = set()
 
-    while len(to_check):
+    while len(to_check) and len(boxes):
         current_box = to_check.pop()
         for key in boxes[current_box]:
             if key not in checked:
