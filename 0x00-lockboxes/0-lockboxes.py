@@ -8,7 +8,7 @@ def canUnlockAll(boxes):
     while len(to_check) and len(boxes):
         current_box = to_check.pop()
         for key in boxes[current_box]:
-            if key not in checked:
+            if key not in checked and key < len(boxes):
                 to_check.add(key)
         checked.add(current_box)
 
