@@ -37,5 +37,6 @@ try:
         if i == 10:
             print_stats()
             i = 0
+    print_stats()
 except KeyboardInterrupt:
     print_stats()
