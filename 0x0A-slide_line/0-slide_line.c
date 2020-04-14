@@ -31,10 +31,6 @@ int slide_line(int *line, size_t size, int direction) {
           right++;
         }
       }
-      // if (!*place_here && *left) {
-      //   *place_here = *left;
-      //   *left = 0;
-      // }
       left++;
     }
     if (*(line + size - 1) && !*place_here) {
