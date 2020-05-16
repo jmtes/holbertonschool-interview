@@ -5,29 +5,23 @@ const BinaryTreeNode = {
   right: undefined
 };
 
-function main (array) {
-  let root;
+function arrayToAVL (array, arraySize) {
   let mid;
 
-  if (array.length % 2 === 0) {
-    mid = parseInt((array.length / 2) - 1);
+  if (arraySize % 2 === 0) {
+    mid = parseInt((arraySize / 2) - 1);
   } else {
-    mid = parseInt(array.length / 2);
+    mid = parseInt(arraySize / 2);
   }
-  console.log(array[mid]);
 
-  root = Object.create(BinaryTreeNode);
+  const root = Object.create(BinaryTreeNode);
   root.n = array[mid];
   root.parent = null;
-  console.log(root);
 
-  root.left = arrayToAVL(array.slice(0, mid), root);
-  root.right = arrayToAVL(array.slice(mid + 1), root);
+  root.left = arrayToAVLChildren(array.slice(0, mid), root);
+  root.right = arrayToAVLChildren(array.slice(mid + 1), root);
 
-  function arrayToAVL (array, parentNode) {
-    console.log('inside arrayToAVL');
-
-    let newNode;
+  function arrayToAVLChildren (array, parentNode) {
     let mid;
 
     if (array.length % 2 === 0) {
@@ -35,16 +29,19 @@ function main (array) {
     } else {
       mid = parseInt(array.length / 2);
     }
-    console.log(array[mid]);
 
-    newNode = Object.create(BinaryTreeNode);
+    const newNode = Object.create(BinaryTreeNode);
     newNode.n = array[mid];
+
+    if (newNode.n === undefined) {
+      return;
+    }
+
     newNode.parent = parentNode;
-    console.log(newNode);
 
     if (array.length > 1) {
-      newNode.left = arrayToAVL(array.slice(0, mid), newNode);
-      newNode.right = arrayToAVL(array.slice(mid + 1), newNode);
+      newNode.left = arrayToAVLChildren(array.slice(0, mid), newNode);
+      newNode.right = arrayToAVLChildren(array.slice(mid + 1), newNode);
     } else {
       newNode.left = undefined;
       newNode.right = undefined;
@@ -53,5 +50,32 @@ function main (array) {
     return newNode;
   }
 
-  console.log(root);
+  return root;
 }
+
+function printTreePreOrder (tree) {
+  console.log(tree);
+  if (tree.left !== undefined) {
+    printTreePreOrder(tree.left);
+  }
+  if (tree.right !== undefined) {
+    printTreePreOrder(tree.right);
+  }
+}
+
+function main () {
+  const array = [1, 2, 20, 21, 22, 32, 34, 47, 62, 68, 79, 84, 87, 91, 95, 98];
+  const n = array.length;
+
+  const tree = arrayToAVL(array, n);
+
+  if (!tree) {
+    console.log('Something went wrong.');
+  } else {
+    console.log('Success!');
+    console.log(array);
+    printTreePreOrder(tree);
+  }
+}
+
+main();
