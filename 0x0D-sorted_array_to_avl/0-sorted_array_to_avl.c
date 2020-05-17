@@ -58,6 +58,9 @@ avl_t *sorted_array_to_avl(int *array, size_t size)
 	avl_t *root = NULL;
 	int mid;
 
+	if (!array)
+		return (NULL);
+
 	mid = size / 2;
 	if (size % 2 == 0)
 		mid--;
