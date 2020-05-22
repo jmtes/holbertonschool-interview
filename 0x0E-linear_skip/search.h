@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stddef.h>
+#include <math.h>
 
 /**
  * struct skiplist_s - Singly linked list with an express lane
