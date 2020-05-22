@@ -6,6 +6,20 @@ const SkipListNode = {
 };
 
 function linearSkip (list, val) {
+  let current = list;
+
+  if (current) {
+    while (current.express !== null && current.express.n < val) {
+      current = current.express;
+    }
+    while (current) {
+      if (current.n === val) {
+        return current;
+      }
+      current = current.next;
+    }
+  }
+
   return SkipListNode;
 }
 
@@ -13,8 +27,7 @@ function initExpress (list, size) {
   const step = parseInt(Math.sqrt(size));
   let save = list;
 
-  for (let i = 0; i < size; ++i) {
-    console.log(i);
+  for (let i = 0; i < size; i++) {
     if (i % step === 0) {
       save.express = list;
       save = list;
@@ -28,21 +41,28 @@ function initExpress (list, size) {
 }
 
 function createSkipList (array, size) {
-  let list;
+  let head;
+  let prevNode;
+  let index = 0;
 
-  let sizeIter = size - 1;
-  while (sizeIter) {
+  array.forEach(value => {
     const node = Object.create(SkipListNode);
-    node.n = array[sizeIter];
-    node.index = sizeIter;
+    node.n = value;
+    node.index = index;
     node.express = null;
-    node.next = list;
-    list = node;
-    sizeIter--;
-  }
 
-  initExpress(list, size);
-  return list;
+    if (head === undefined) {
+      head = node;
+    }
+    if (prevNode !== undefined) {
+      prevNode.next = node;
+    }
+    prevNode = node;
+    index++;
+  });
+
+  initExpress(head, size);
+  return head;
 }
 
 function printSkipList (list) {
