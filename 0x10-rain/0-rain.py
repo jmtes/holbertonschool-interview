@@ -14,14 +14,9 @@ def rain(walls):
 
         while windowEnd < len(walls):
             windowMiddle = windowStart + 1
-            print(
-                'Window is [{}, {}, {}]'.format(
-                    walls[windowStart],
-                    walls[windowMiddle],
-                    walls[windowEnd]))
             if walls[windowStart] > walls[windowMiddle] < walls[windowEnd]:
-                print('{} units of water were collected here'.format(min([walls[windowStart], walls[windowEnd]]) - walls[windowMiddle]))
-                waterCollected += min([walls[windowStart], walls[windowEnd]]) - walls[windowMiddle]
+                waterCollected += min([walls[windowStart],
+                                       walls[windowEnd]]) - walls[windowMiddle]
             windowStart += 1
             windowEnd += 1
 
