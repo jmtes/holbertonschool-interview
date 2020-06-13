@@ -74,7 +74,7 @@ void max_heapify(int *array, size_t size)
  */
 void heap_sort(int *array, size_t size)
 {
-	if (size >= 2)
+	if (array && size >= 2)
 	{
 		max_heapify(array, size);
 		swap_values(array, size, 0, size - 1);
