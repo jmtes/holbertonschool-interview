@@ -5,7 +5,7 @@ function findParentIdx(idx) {
 }
 
 function swapValues(array, idx1, idx2) {
-  tmp = array[idx1];
+  const tmp = array[idx1];
   array[idx1] = array[idx2];
   array[idx2] = tmp;
   console.log(array);
@@ -16,7 +16,6 @@ function maxHeapify(array, len) {
   console.log(idxLastParent);
 
   let idx = idxLastParent;
-  let tmp;
 
   while (idx >= 0) {
     const left = 2 * idx + 1;
