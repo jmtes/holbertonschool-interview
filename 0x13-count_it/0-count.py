@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 ''' Count occurrences of given keywords in a subreddit's hot posts. '''
 
 from requests import get
