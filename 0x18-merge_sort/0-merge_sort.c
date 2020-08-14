@@ -1,8 +1,47 @@
 #include "sort.h"
 
-void merge(int *array, int start, int mid, int end)
+void sort(int *arr, int *l, int *r, int start, int mid, int end)
 {
   int left_iter, right_iter, array_iter;
+  int left_size = mid - start + 1;
+  int right_size = end - mid;
+
+  left_iter = right_iter = 0;
+  array_iter = start;
+
+  while (left_iter < left_size && right_iter < right_size)
+  {
+    if (l[left_iter] < r[right_iter])
+    {
+      arr[array_iter] = l[left_iter];
+      left_iter++;
+    }
+    else
+    {
+      arr[array_iter] = r[right_iter];
+      right_iter++;
+    }
+    array_iter++;
+  }
+
+  while (left_iter < left_size)
+  {
+    arr[array_iter] = l[left_iter];
+    left_iter++;
+    array_iter++;
+  }
+
+  while (right_iter < right_size)
+  {
+    arr[array_iter] = r[right_iter];
+    right_iter++;
+    array_iter++;
+  }
+}
+
+void merge(int *array, int start, int mid, int end)
+{
+  int left_iter, right_iter;
   int left_size = mid - start + 1;
   int right_size = end - mid;
 
@@ -19,37 +58,7 @@ void merge(int *array, int start, int mid, int end)
   printf("[right]: ");
   print_array(right, right_size);
 
-  left_iter = right_iter = 0;
-  array_iter = start;
-
-  while (left_iter < left_size && right_iter < right_size)
-  {
-    if (left[left_iter] < right[right_iter])
-    {
-      array[array_iter] = left[left_iter];
-      left_iter++;
-    }
-    else
-    {
-      array[array_iter] = right[right_iter];
-      right_iter++;
-    }
-    array_iter++;
-  }
-
-  while (left_iter < left_size)
-  {
-    array[array_iter] = left[left_iter];
-    left_iter++;
-    array_iter++;
-  }
-
-  while (right_iter < right_size)
-  {
-    array[array_iter] = right[right_iter];
-    right_iter++;
-    array_iter++;
-  }
+  sort(array, left, right, start, mid, end);
 
   printf("[Done]: ");
   print_array(&array[start], left_size + right_size);
