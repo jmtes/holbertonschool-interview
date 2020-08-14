@@ -1,6 +1,14 @@
+const printArray = (array: number[], length: number): string => {
+  return array.join(', ');
+};
+
 const merge = (array: number[], left: number[], right: number[]) => {
   let i: number, j: number, k: number;
   i = j = k = 0;
+
+  console.log('Merging...');
+  console.log(`[left]: ${printArray(left, left.length)}`);
+  console.log(`[right]: ${printArray(right, right.length)}`);
 
   while (i < left.length && j < right.length) {
     if (left[i] < right[j]) {
@@ -24,6 +32,8 @@ const merge = (array: number[], left: number[], right: number[]) => {
     j += 1;
     k += 1;
   }
+
+  console.log(`[Done]: ${printArray(array, left.length + right.length)}`);
 };
 
 const mergeSort = (array: number[]): void => {
@@ -43,17 +53,13 @@ const mergeSort = (array: number[]): void => {
   merge(array, left, right);
 };
 
-const printArray = (array: number[]): void => {
-  console.log(array.join(', '));
-};
-
 const main = (): number => {
   const array: number[] = [19, 48, 99, 71, 13, 52, 96, 73, 86, 7];
   const n: number = array.length;
 
-  printArray(array);
+  printArray(array, n);
   mergeSort(array);
-  printArray(array);
+  printArray(array, n);
 
   return 0;
 };
