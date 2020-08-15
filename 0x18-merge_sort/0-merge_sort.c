@@ -1,5 +1,16 @@
 #include "sort.h"
 
+/**
+ * sort - Sort subarrays
+ * @arr: Pointer to array of integers
+ * @l: Pointer to left subarray
+ * @r: Pointer to right subarray
+ * @start: First index of left subarray
+ * @mid: Last index of left subarray
+ * @end: Last index of right subarray
+ *
+ * Return: None
+ */
 void sort(int *arr, int *l, int *r, int start, int mid, int end)
 {
 	int left_iter, right_iter, array_iter;
@@ -39,12 +50,22 @@ void sort(int *arr, int *l, int *r, int start, int mid, int end)
 	}
 }
 
+/**
+ * merge - Merge subarrays
+ * @array: Pointer to array of integers
+ * @start: First index of left subarray
+ * @mid: Last index of left subarray
+ * @end: Last index of right subarray
+ *
+ * Return: None
+ */
 void merge(int *array, int start, int mid, int end)
 {
 	int left_iter, right_iter;
 	int left_size = mid - start + 1;
 	int right_size = end - mid;
 
+	#pragma GCC diagnostic ignored "-Wvla"
 	int left[left_size];
 	int right[right_size];
 
@@ -64,6 +85,14 @@ void merge(int *array, int start, int mid, int end)
 	print_array(&array[start], left_size + right_size);
 }
 
+/**
+ * split_arrays - Split array into subarrays
+ * @array: Pointer to array of integers
+ * @start: First index of left subarray
+ * @end: Last index of right subarray
+ *
+ * Return: None
+ */
 void split_arrays(int *array, int start, int end)
 {
 	int mid = (start + end - 1) / 2;
@@ -77,6 +106,13 @@ void split_arrays(int *array, int start, int end)
 	}
 }
 
+/**
+ * merge_sort - Sort array in-place using merge sort algorithm
+ * @array: Pointer to array of integers
+ * @size: Number of elements in array
+ *
+ * Return: None
+ */
 void merge_sort(int *array, size_t size)
 {
 	if (array && size >= 2)
