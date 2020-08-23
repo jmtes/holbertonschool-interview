@@ -3,11 +3,11 @@
 
 
 def makeChange(coins, total):
-    ''' Determine fewest number of coins needed to make amount `total`. 
+    ''' Determine fewest number of coins needed to make amount `total`.
 
         Positional arguments:
         coins -- list of coin denominations
-        total -- the total amount to make 
+        total -- the total amount to make
 
         Return: Fewest amount of coins needed to make `total`, -1 if impossible
         to do so '''
