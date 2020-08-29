@@ -2,15 +2,11 @@
 
 List *add_node_end(List **list, char *str)
 {
-  printf("Inside add end\n");
   List *new_node = NULL;
   char *new_str = NULL;
 
-  if (!list || !(*list) || !str)
-  {
-    printf("uh oh\n");
+  if (!list || !str)
     return NULL;
-  }
 
   new_node = malloc(sizeof(List));
   if (!new_node)
@@ -24,25 +20,31 @@ List *add_node_end(List **list, char *str)
   }
 
   new_node->str = new_str;
-  new_node->next = *list;
-  new_node->prev = (*list)->prev;
-  (*list)->prev = new_node;
-  new_node->prev->next = new_node;
+
+  if (!(*list))
+  {
+    new_node->next = new_node;
+    new_node->prev = new_node;
+    *list = new_node;
+  }
+  else
+  {
+    new_node->next = *list;
+    new_node->prev = (*list)->prev;
+    (*list)->prev = new_node;
+    new_node->prev->next = new_node;
+  }
 
   return new_node;
 }
 
 List *add_node_begin(List **list, char *str)
 {
-  printf("inside node begin\n");
   List *new_node = NULL;
   char *new_str = NULL;
 
-  if (!list || !(*list) || !str)
-  {
-    printf("uh oh\n");
+  if (!list || !str)
     return NULL;
-  }
 
   new_node = malloc(sizeof(List));
   if (!new_node)
@@ -56,10 +58,19 @@ List *add_node_begin(List **list, char *str)
   }
 
   new_node->str = new_str;
-  new_node->next = *list;
-  new_node->prev = (*list)->prev;
-  (*list)->prev = new_node;
-  new_node->prev->next = new_node;
+
+  if (!(*list))
+  {
+    new_node->next = new_node;
+    new_node->prev = new_node;
+  }
+  else
+  {
+    new_node->next = *list;
+    new_node->prev = (*list)->prev;
+    (*list)->prev = new_node;
+    new_node->prev->next = new_node;
+  }
 
   *list = new_node;
   return new_node;
