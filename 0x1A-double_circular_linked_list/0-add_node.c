@@ -1,5 +1,12 @@
 #include "list.h"
 
+/**
+ * add_node_end - Add node to end of circular doubly linked list
+ * @list: Pointer to address of list head
+ * @str: String to put in new node
+ * 
+ * Return: Pointer to new node on success, NULL on failure
+ */
 List *add_node_end(List **list, char *str)
 {
   List *new_node = NULL;
@@ -38,6 +45,13 @@ List *add_node_end(List **list, char *str)
   return new_node;
 }
 
+/**
+ * add_node_begin - Add node to beginning of circular doubly linked list
+ * @list: Pointer to address of list head
+ * @str: String to put in new node
+ * 
+ * Return: Pointer to new node on success, NULL on failure
+ */
 List *add_node_begin(List **list, char *str)
 {
   List *new_node = NULL;
