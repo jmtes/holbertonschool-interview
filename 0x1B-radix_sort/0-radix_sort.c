@@ -39,6 +39,7 @@ void counting_sort(int *array, size_t size, int digit)
   for (i = 0; i < signed_size; i++)
     array[i] = tmp[i];
 
+  print_array(tmp, size);
   free(tmp);
 }
 
