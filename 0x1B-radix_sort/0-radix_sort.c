@@ -16,9 +16,13 @@ int get_max(int *array, size_t size)
 void counting_sort(int *array, size_t size, int digit)
 {
   int signed_size = (short)size;
-  int tmp[size];
+  int *tmp = NULL;
   int count[10] = {0};
   int i;
+
+  tmp = malloc(sizeof(int) * size);
+  if (!tmp)
+    return;
 
   for (i = 0; i < signed_size; i++)
     count[(array[i] / digit) % 10] += 1;
@@ -34,6 +38,8 @@ void counting_sort(int *array, size_t size, int digit)
 
   for (i = 0; i < signed_size; i++)
     array[i] = tmp[i];
+
+  free(tmp);
 }
 
 void radix_sort(int *array, size_t size)
