@@ -44,6 +44,9 @@ void counting_sort(int *array, size_t size, int digit)
 
 void radix_sort(int *array, size_t size)
 {
+  if (!array)
+    return;
+
   int max = get_max(array, size);
   int digit;
 
